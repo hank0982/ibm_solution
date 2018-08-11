@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Home extends Component {
+class CarIntro extends Component {
   constructor(props){
     super(props);
   }
@@ -10,7 +10,7 @@ class Home extends Component {
       <div className="bx--grid">
         <div className="bx--row">
           <div className="bx--col-xs-12 ">
-            <p>Content space for bx--col-xs-12 bx--col-sm-6</p>
+            <p>car intro</p>
           </div>
         </div>
       </div>
@@ -18,4 +18,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default CarIntro;

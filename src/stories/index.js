@@ -1,5 +1,5 @@
 import { configure } from '@storybook/react';
-import 'carbon-components/css/carbon-components.css'
+import 'semantic-ui-css/semantic.min.css';
 const req = require.context('../components', true, /_stories\.js$/)
 
 function loadStories() {
