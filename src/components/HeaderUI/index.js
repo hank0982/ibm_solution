@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {Header, Icon} from 'semantic-ui-react';
 class HeaderUI extends Component {
-  constructor(props){
-    super(props);
-  }
-  
   render() {
     const {content, icon} = this.props;
     return (
