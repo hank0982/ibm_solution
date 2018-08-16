@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: components/HeaderUI/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,38 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: components/HeaderUI/index.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import {Header, Icon} from 'semantic-ui-react';
+/**
+ * @class HeaderUI
+ * @extends {Component}
+ * @description This class will generate Header 
+ */
+class HeaderUI extends Component {
+  render() {
+    const {content, icon} = this.props;
+    return (
+        &lt;Header as='h2'>
+            &lt;Icon name={icon} />
+            &lt;Header.Content>{content}&lt;/Header.Content>
+        &lt;/Header>
+    );
+  }
+}
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default HeaderUI;
+</code></pre>
+        </article>
+    </section>
 
 
 

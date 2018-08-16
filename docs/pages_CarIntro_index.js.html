@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: pages/CarIntro/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,43 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: pages/CarIntro/index.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+/**
+ * @class CarIntro
+ * @extends {Component}
+ * This class is responsible for each car's own page
+ */
+class CarIntro extends Component {
+  constructor(props){
+    super(props);
+  }
 
+  render() {
+    return (
+      &lt;div className="bx--grid">
+        &lt;div className="bx--row">
+          &lt;div className="bx--col-xs-12 ">
+            &lt;p>car intro&lt;/p>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    );
+  }
+}
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default CarIntro;
+</code></pre>
+        </article>
+    </section>
 
 
 
