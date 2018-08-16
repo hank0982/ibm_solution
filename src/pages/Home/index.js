@@ -12,7 +12,7 @@ const carDataGenerator = (dataNum) => {
     data.push({
       auth: Math.floor(Math.random() * 10) < 3 ? true : false,
       imagePath: "https://loremflickr.com/320/240/car,lexus,BMW,Jeep/all?random="+i,
-      header: `${randomCarName}-X${Math.floor(Math.random() * 1000)}`,
+      header: `${randomCarName}-${chance.character({ alpha: true, casing: 'upper' })}${Math.floor(Math.random() * 1000)}`,
       metaData: chance.date({string: true}),
       description: chance.sentence({ words: 3 }),
       salesPerson: chance.first() + chance.last()
