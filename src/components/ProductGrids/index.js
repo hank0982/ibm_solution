@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
-import { Grid, Card } from 'semantic-ui-react';
-const place_holder = "./place_holder.png";
-const testData = [
-    [{ imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-    { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-    { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-    { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"}],
-    [{ imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-    { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-    { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-    { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"}]
-];
-class ProductGrids extends Component {
+import { Grid, Card, Icon } from 'semantic-ui-react';
 
+class ProductGrids extends Component {
     generateColumn = (config, key) => {
-        const {imagePath, header, metaData, description} = config;
+        const {imagePath, header, metaData, description, auth} = config;
         return (
             <Grid.Column key={`$ProductGrids-${new Date()}-${key}`}>
                 <Card
                 image={imagePath}
-                header={header}
+                header={auth ? <h3>{header}<Icon name='thumbs up outline'/></h3> : <h3>{header} </h3>}
                 meta={metaData}
                 description={description}
                 />
@@ -28,18 +17,21 @@ class ProductGrids extends Component {
     }
     render() {
         const { gridInEachLine , data} = this.props;
-        const gridData = data || testData;
+        const gridData = data;
         const lineArray = [];
-        for (const lineID in gridData){
-            const gridArray = [];
-            for (let elementID = 0; elementID < gridInEachLine; elementID ++){
-                gridArray.push(this.generateColumn(testData[lineID][elementID], `line-${lineID}-element-${elementID}`));
+        let lineNum = 1;
+        let gridArray = [];
+        for (const elementID in gridData){
+            gridArray.push(this.generateColumn(gridData[elementID], `line-${lineNum}-element-${elementID}`));
+            if(Number(elementID)+1 === Number(lineNum*gridInEachLine)){
+                lineArray.push(
+                    <Grid stackable container columns={ gridInEachLine } key={`ProductGrids-${new Date()}-${lineNum}`}>
+                        { gridArray }
+                    </Grid>
+                )
+                gridArray = []
+                lineNum ++;
             }
-            lineArray.push(
-                <Grid stackable container columns={ gridInEachLine } key={`ProductGrids-${new Date()}-${lineID}`}>
-                    { gridArray }
-                </Grid>
-            )
         }
         return (
             <div>
