@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import HeaderUI from '../../components/HeaderUI';
 import ProductGrids from '../../components/ProductGrids'
 import { Container } from 'semantic-ui-react';
 import Chance from 'chance';
 const chance = new Chance();
+/**
+ * @function carDataGenerator
+ * @param {Number} dataNum
+ * @return {Array} data array of car data
+ * @description This will generate random car data
+ */
 const carDataGenerator = (dataNum) => {
   const data = [];
   const carBrand = ['Lexus', 'BMW', 'Jaguar', 'Jeep', 'Chevrolet', 'Mitsubishi', 'Mini', 'Land Rover', 'Tesla', 'Saab', 'Lamborghini']
@@ -20,11 +27,15 @@ const carDataGenerator = (dataNum) => {
   }
   return data;
 }
-const carData = carDataGenerator(29);
+/**
+ * @class Home
+ * @extends {Component}
+ * This class is responsible for main page
+ */
 class Home extends Component {
-
   render() {
     const { searchWord } = this.props;
+    const carData = carDataGenerator(29);
     return (
       <div>
       <Container className="Site-content">

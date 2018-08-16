@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import { Grid, Card, Icon } from 'semantic-ui-react';
 
+/**
+ * @class ProductGrids
+ * @extends {Component}
+ * @prop {Array} data - data for grids
+ * @prop {Number} gridInEachLine - number of grids each line contains
+ * @description This will generate grids based on the data you provide
+ */
 class ProductGrids extends Component {
-    generateColumn = (config, key) => {
-        const {imagePath, header, metaData, description, auth} = config;
+    /**
+     * @function generateColumn
+     * @param {Object} carData - data for each card
+     * @param {string} key - unique key for each card
+     * @memberof ProductGrids
+     */
+    generateColumn = (cardData, key) => {
+        const {imagePath, header, metaData, description, auth} = cardData;
         return (
             <Grid.Column key={`$ProductGrids-${new Date()}-${key}`}>
                 <Card
@@ -40,5 +53,4 @@ class ProductGrids extends Component {
         );
     }
 }
-
 export default ProductGrids;

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import {Header, Icon} from 'semantic-ui-react';
+/**
+ * @class HeaderUI
+ * @extends {Component}
+ * @description This class will generate Header 
+ */
 class HeaderUI extends Component {
   render() {
     const {content, icon} = this.props;

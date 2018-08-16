@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Switch, Link, withRouter, BrowserRouter as Router, Route } from "react-router-dom";
-import { Menu, Input, Icon} from 'semantic-ui-react';
+import { Menu, Input, Icon } from 'semantic-ui-react';
 import FooterUI from './components/FooterUI';
 import Home from './pages/Home';
 import CarIntro from './pages/CarIntro';
 import './App.css';
+/**
+ * @function NoMatch
+ * Return class when there is no match path 
+ */
 const NoMatch = ({ location }) => (
   <div>
     <h3>
@@ -12,6 +16,11 @@ const NoMatch = ({ location }) => (
     </h3>
   </div>
 );
+/**
+ * @class App
+ * @extends {Component}
+ * Main react frontend class
+ */
 class App extends Component {
   constructor(props){
     super(props);
@@ -19,6 +28,9 @@ class App extends Component {
       searchWord: undefined,
     }
   }
+  /**
+   * TODO: Extract the Menu from this component
+   */
   render() {
     return (
       <div className="Site">
