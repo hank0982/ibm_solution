@@ -4,18 +4,19 @@ import ProductGrids from '../../components/ProductGrids'
 import { Container, List, Sticky } from 'semantic-ui-react';
 const place_holder = "./place_holder.png";
 const carData = [
-  [{ imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"}],
-  [{ imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"}]
+  [{ auth:true, imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
+  { imagePath: place_holder, header: 'BMW', metaData:"2018-09-11", description:"this is goo"},
+  { imagePath: place_holder, header: 'Acura', metaData:"2018-09-11", description:"this is goo"},
+  { imagePath: place_holder, header: 'Buick', metaData:"2018-09-11", description:"this is goo"}],
+  [{ imagePath: place_holder, header: 'Bentley', metaData:"2018-09-11", description:"this is goo"},
+  { imagePath: place_holder, header: 'Jaguar', metaData:"2018-09-11", description:"this is goo"},
+  { imagePath: place_holder, header: 'Kia', metaData:"2018-09-11", description:"this is goo"},
+  { imagePath: place_holder, header: 'Koenigsegg', metaData:"2018-09-11", description:"this is goo"}]
 ];
 class Home extends Component {
 
   render() {
+    const { searchWord } = this.props;
     return (
       <div>
       <Container className="Site-content">
