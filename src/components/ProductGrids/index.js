@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Card, Icon } from 'semantic-ui-react';
-const place_holder = "./place_holder.png";
 
 class ProductGrids extends Component {
-
     generateColumn = (config, key) => {
         const {imagePath, header, metaData, description, auth} = config;
         return (
@@ -19,18 +17,21 @@ class ProductGrids extends Component {
     }
     render() {
         const { gridInEachLine , data} = this.props;
-        const gridData = data ;
+        const gridData = data;
         const lineArray = [];
-        for (const lineID in gridData){
-            const gridArray = [];
-            for (let elementID = 0; elementID < gridInEachLine; elementID ++){
-                gridArray.push(this.generateColumn(gridData[lineID][elementID], `line-${lineID}-element-${elementID}`));
+        let lineNum = 1;
+        let gridArray = [];
+        for (const elementID in gridData){
+            gridArray.push(this.generateColumn(gridData[elementID], `line-${lineNum}-element-${elementID}`));
+            if(Number(elementID)+1 === Number(lineNum*gridInEachLine)){
+                lineArray.push(
+                    <Grid stackable container columns={ gridInEachLine } key={`ProductGrids-${new Date()}-${lineNum}`}>
+                        { gridArray }
+                    </Grid>
+                )
+                gridArray = []
+                lineNum ++;
             }
-            lineArray.push(
-                <Grid stackable container columns={ gridInEachLine } key={`ProductGrids-${new Date()}-${lineID}`}>
-                    { gridArray }
-                </Grid>
-            )
         }
         return (
             <div>

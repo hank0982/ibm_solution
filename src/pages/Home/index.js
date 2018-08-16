@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import HeaderUI from '../../components/HeaderUI';
 import ProductGrids from '../../components/ProductGrids'
-import { Container, List, Sticky } from 'semantic-ui-react';
-const place_holder = "./place_holder.png";
-const carData = [
-  [{ auth:true, imagePath: place_holder, header: 'Lexus', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'BMW', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Acura', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Buick', metaData:"2018-09-11", description:"this is goo"}],
-  [{ imagePath: place_holder, header: 'Bentley', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Jaguar', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Kia', metaData:"2018-09-11", description:"this is goo"},
-  { imagePath: place_holder, header: 'Koenigsegg', metaData:"2018-09-11", description:"this is goo"}]
-];
+import { Container } from 'semantic-ui-react';
+import Chance from 'chance';
+const chance = new Chance();
+const carDataGenerator = (dataNum) => {
+  const data = [];
+  const carBrand = ['Lexus', 'BMW', 'Jaguar', 'Jeep', 'Chevrolet', 'Mitsubishi', 'Mini', 'Land Rover', 'Tesla', 'Saab', 'Lamborghini']
+  for(let i = 1; i < dataNum; i++){
+    const randomCarName = carBrand[Math.floor(Math.random() * carBrand.length)];
+    data.push({
+      auth: Math.floor(Math.random() * 10) < 3 ? true : false,
+      imagePath: "https://loremflickr.com/320/240/car,lexus,BMW,Jeep/all?random="+i,
+      header: `${randomCarName}-X${Math.floor(Math.random() * 1000)}`,
+      metaData: chance.date({string: true}),
+      description: chance.sentence({ words: 3 }),
+      salesPerson: chance.first() + chance.last()
+    })
+  }
+  return data;
+}
+const carData = carDataGenerator(29);
 class Home extends Component {
 
   render() {
@@ -23,7 +31,6 @@ class Home extends Component {
         <HeaderUI icon="car" content="Cars"/>
         <ProductGrids gridInEachLine={4} data={carData} />
       </Container>
-      
       </div>
     );
   }
