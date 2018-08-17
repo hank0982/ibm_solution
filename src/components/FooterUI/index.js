@@ -1,6 +1,11 @@
 
 import React, { Component } from 'react';
-
+/**
+ * @class FooterUI
+ * @extends {Component}
+ * @description This class is responsible for footer
+ * TODO: Should modify the content
+ */
 class FooterUI extends Component {  
   render() {
     return (
