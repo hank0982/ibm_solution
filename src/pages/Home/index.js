@@ -31,7 +31,7 @@ const carDataGenerator = (dataNum) => {
  * @class Home
  * @extends {Component}
  * @prop {string} searchWord - The searchWord from menu bar
- * This class is responsible for main page
+ * @description This class is responsible for main page
  */
 class Home extends Component {
   render() {
@@ -39,10 +39,10 @@ class Home extends Component {
     const carData = carDataGenerator(29);
     return (
       <div>
-      <Container className="Site-content">
-        <HeaderUI icon="car" content="Cars"/>
-        <ProductGrids gridInEachLine={4} data={carData} />
-      </Container>
+        <Container className="Site-content">
+          <HeaderUI icon="car" content="Cars"/>
+          <ProductGrids gridInEachLine={4} data={carData} />
+        </Container>
       </div>
     );
   }

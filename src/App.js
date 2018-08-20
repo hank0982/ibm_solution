@@ -7,7 +7,7 @@ import CarIntro from './pages/CarIntro';
 import './App.css';
 /**
  * @function NoMatch
- * Return class when there is no match path 
+ * @description Return class when there is no match path 
  */
 const NoMatch = ({ location }) => (
   <div>
@@ -19,7 +19,7 @@ const NoMatch = ({ location }) => (
 /**
  * @class App
  * @extends {Component}
- * Main react frontend class
+ * @description Main react frontend class
  */
 class App extends Component {
   constructor(props){
@@ -68,7 +68,7 @@ class App extends Component {
           </Menu>
           <Switch>
             <Route exact path="/" render={(props) => <Home {...props} searchWord={this.state.searchWord} />} />
-            <Route path="/car_intro" component={CarIntro} />
+            <Route path="/car_intro/:id" component={CarIntro} />
             <Route component={NoMatch} />
           </Switch>
 
