@@ -32,6 +32,7 @@ class App extends Component {
    * TODO: Extract the Menu from this component
    */
   render() {
+    //console.log(this.state.searchWord);
     return (
       <div className="Site">
       <Router >

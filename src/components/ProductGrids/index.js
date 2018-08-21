@@ -29,14 +29,14 @@ class ProductGrids extends Component {
             )
     }
     render() {
-        const { gridInEachLine , data} = this.props;
+        const { page, gridInEachLine , lineInEachPage , data} = this.props;
         const gridData = data;
         const lineArray = [];
         let lineNum = 1;
         let gridArray = [];
         for (const elementID in gridData){
             gridArray.push(this.generateColumn(gridData[elementID], `line-${lineNum}-element-${elementID}`));
-            if(Number(elementID)+1 === Number(lineNum*gridInEachLine)){
+            if(Number(elementID)+1 === Number(lineNum*gridInEachLine) || Number(elementID)+1 === gridData.length){
                 lineArray.push(
                     <Grid stackable container columns={ gridInEachLine } key={`ProductGrids-${new Date()}-${lineNum}`}>
                         { gridArray }
