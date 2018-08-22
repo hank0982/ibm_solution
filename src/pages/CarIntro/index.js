@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
+import { Container } from 'semantic-ui-react';
+import HeaderUI from '../../components/HeaderUI';
 /**
  * @class CarIntro
  * @extends {Component}
- * This class is responsible for each car's own page
+ * @description This class is responsible for each car's own page
  */
 class CarIntro extends Component {
   constructor(props){
     super(props);
+    this.id = this.props.match.params.id;
   }
 
   render() {
     return (
-      <div className="bx--grid">
-        <div className="bx--row">
-          <div className="bx--col-xs-12 ">
-            <p>car intro</p>
-          </div>
-        </div>
+      <div>
+        <Container className="Site-content">
+          <HeaderUI icon="car" content={this.id}/>
+        </Container>
       </div>
     );
   }

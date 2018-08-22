@@ -34,7 +34,7 @@ const carDataGenerator = (dataNum) => {
  * @class Home
  * @extends {Component}
  * @prop {string} searchWord - The searchWord from menu bar
- * This class is responsible for main page
+ * @description This class is responsible for main page
  */
 class Home extends Component {
   constructor(){
