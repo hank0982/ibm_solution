@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, Card, Icon } from 'semantic-ui-react';
+import { Grid, Card, Icon, Pagination } from 'semantic-ui-react';
+import './index.css';
 
 /**
  * @class ProductGrids
@@ -28,9 +29,31 @@ class ProductGrids extends Component {
             </Grid.Column>
             )
     }
+
+    constructor(){
+        super();
+        this.state = {
+          activePage: 1,
+        };
+    }
+
+    
+    handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
+
     render() {
-        const { page, gridInEachLine , lineInEachPage , data} = this.props;
-        const gridData = data;
+        const { gridInEachLine , lineInEachPage , data} = this.props;
+        const { activePage } = this.state;
+        
+        const dataInThisPage = [];
+        const carsInEachPage = gridInEachLine * lineInEachPage;
+        const totalPages = Math.ceil(data.length/carsInEachPage);
+        // which cars to show on this page
+        for ( let i = 0; i < carsInEachPage; i += 1) {
+          if(data[(activePage - 1) * carsInEachPage + i] === undefined) break;
+          dataInThisPage.push(data[(activePage - 1) * 16 + i]);
+        }
+
+        const gridData = dataInThisPage;
         const lineArray = [];
         let lineNum = 1;
         let gridArray = [];
@@ -48,7 +71,16 @@ class ProductGrids extends Component {
         }
         return (
             <div>
-            { lineArray }
+              <div>
+                { lineArray }
+              </div>
+              <div className="pagination">
+                <Pagination
+                  activePage={activePage}
+                  totalPages={totalPages}
+                  onPageChange={this.handlePaginationChange}
+                />
+              </div>
             </div>
         );
     }

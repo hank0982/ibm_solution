@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HeaderUI from '../../components/HeaderUI';
 import ProductGrids from '../../components/ProductGrids'
-import { Container, Button } from 'semantic-ui-react';
-import Chance from 'chance';
-const chance = new Chance();
+import { Container } from 'semantic-ui-react';
+//import Chance from 'chance';
+//const chance = new Chance();
 /**
  * @function carDataGenerator
  * @param {Number} dataNum
  * @return {Array} data array of car data
  * @description This will generate random car data
  */
+/*
 const carDataGenerator = (dataNum) => {
   const data = [];
   const carBrand = ['Lexus', 'BMW', 'Jaguar', 'Jeep', 'Chevrolet', 'Mitsubishi', 'Mini', 'Land Rover', 'Tesla', 'Saab', 'Lamborghini']
@@ -27,6 +28,8 @@ const carDataGenerator = (dataNum) => {
   }
   return data;
 }
+*/
+
 /**
  * @class Home
  * @extends {Component}
@@ -42,28 +45,8 @@ class Home extends Component {
       page: 1,
     };
     this.handleCarShowChange = this.handleCarShowChange.bind(this);
-    this.handlePageChange = this.handlePageChange.bind(this);
   }
 
-  
-
-  
-
-  handlePageChange(e, dir){
-    console.log('in handlePageChange');
-    if (dir === 'right') {
-      this.setState({
-        page: this.state.page + 1,
-      });
-    } else if (dir === 'left') {
-      if(this.state.page !== 1){
-        this.setState({
-          page: this.state.page - 1,
-        });
-      }
-    }
-    
-  }
 
   handleCarShowChange(searchWord) {
     let newCarShow = [];
@@ -79,21 +62,12 @@ class Home extends Component {
         }
       }
     }
-    const gridInEachLine = 4;
-    const lineInEachPage = 4;
-    const page = this.state.page;
-    const data = newCarFilter;
-    const carsInEachPage = gridInEachLine * lineInEachPage;
-    for ( let i = 0; i < carsInEachPage; i += 1) {
-      if(data[(page - 1) * carsInEachPage + i] === undefined) break;
-      newCarShow.push(data[(page - 1) * 16 + i]);
-      
-    }
-    return newCarShow;
+    
+    return newCarFilter;
   }
 
   componentWillMount() {
-    const initCarData = carDataGenerator(50);
+    const initCarData = JSON.parse(JSON.stringify(require('./carData')));
     this.setState({
       carData: initCarData,
     });
@@ -112,21 +86,6 @@ class Home extends Component {
           lineInEachPage={4}
           data={carShow}
         />
-        <div className="Flip-page">
-          <p> --this is page {this.state.page} -- </p>
-          <Button
-            content="Last Page"
-            icon="left arrow"
-            labelPosition="left"
-            onClick={(e) => {this.handlePageChange(e, 'left');}}
-          />
-          <Button
-            content="Next Page"
-            icon="right arrow"
-            labelPosition="right"
-            onClick={(e) => {this.handlePageChange(e, 'right');}}
-          />
-        </div>
       </Container>
       </div>
     );
