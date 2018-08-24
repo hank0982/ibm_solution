@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Container, Image} from 'semantic-ui-react';
+import HeaderUI from '../../components/HeaderUI'; 
 /**
  * @class CarIntro
  * @extends {Component}
@@ -11,13 +13,10 @@ class CarIntro extends Component {
 
   render() {
     return (
-      <div className="bx--grid">
-        <div className="bx--row">
-          <div className="bx--col-xs-12 ">
-            <p>car intro</p>
-          </div>
-        </div>
-      </div>
+      <Container className="Site-content">
+        <HeaderUI content="Lexus-X1001" icon="car"/>
+        <Image src='place_holder.png' width/>
+      </Container>
     );
   }
 }

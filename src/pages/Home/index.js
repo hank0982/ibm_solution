@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import HeaderUI from '../../components/HeaderUI';
 import ProductGrids from '../../components/ProductGrids'
 import { Container } from 'semantic-ui-react';
@@ -18,7 +17,7 @@ const carDataGenerator = (dataNum) => {
     const randomCarName = carBrand[Math.floor(Math.random() * carBrand.length)];
     data.push({
       auth: Math.floor(Math.random() * 10) < 3 ? true : false,
-      imagePath: "https://loremflickr.com/320/240/car,lexus,BMW,Jeep/all?random="+i,
+      imagePath: "https://picsum.photos/300/200/?random="+i,
       header: `${randomCarName}-${chance.character({ alpha: true, casing: 'upper' })}${Math.floor(Math.random() * 1000)}`,
       metaData: chance.date({string: true}),
       description: chance.sentence({ words: 3 }),
