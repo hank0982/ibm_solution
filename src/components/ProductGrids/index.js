@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Card, Icon } from 'semantic-ui-react';
+import { Grid, Card, Icon, Pagination, Image} from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
+import './index.css';
 
 /**
  * @class ProductGrids
@@ -19,24 +21,56 @@ class ProductGrids extends Component {
         const {imagePath, header, metaData, description, auth} = cardData;
         return (
             <Grid.Column key={`$ProductGrids-${new Date()}-${key}`}>
-                <Card
-                image={imagePath}
-                header={auth ? <div className="header">{header} <Icon name='thumbs up outline'/></div> : header}
-                meta={metaData}
-                description={description}
-                />
+                <Card>
+                    <Link to={`/car_intro/${header}`}><Image src={imagePath}/></Link>
+                    <Card.Content>
+                        <Card.Header>
+                            {auth ? <div className="header">{header} <Icon name='thumbs up outline'/></div> : header}
+                        </Card.Header>
+                        <Card.Meta>
+                            {metaData}
+                        </Card.Meta>
+                        <Card.Description>
+                            {description}
+                        </Card.Description>
+                    </Card.Content>
+                </Card>
             </Grid.Column>
             )
     }
+
+    constructor(){
+        super();
+        this.state = {
+            activePage: 1,
+        };
+    }
+
+    
+    handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
+
     render() {
-        const { gridInEachLine , data} = this.props;
-        const gridData = data;
+        const { gridInEachLine , lineInEachPage , data} = this.props;
+        const { activePage } = this.state;
+        
+        const dataInThisPage = [];
+        const carsInEachPage = gridInEachLine * lineInEachPage;
+        const data_values = Object.values(data)
+        const totalPages = Math.ceil(data_values.length/carsInEachPage);
+
+        // which cars to show on this page
+        for ( let i = 0; i < carsInEachPage; i += 1) {
+          if(data_values[(activePage - 1) * carsInEachPage + i] === undefined) break;
+          dataInThisPage.push(data_values[(activePage - 1) * 16 + i]);
+        }
+
+        const gridData = dataInThisPage;
         const lineArray = [];
         let lineNum = 1;
         let gridArray = [];
         for (const elementID in gridData){
             gridArray.push(this.generateColumn(gridData[elementID], `line-${lineNum}-element-${elementID}`));
-            if(Number(elementID)+1 === Number(lineNum*gridInEachLine)){
+            if(Number(elementID)+1 === Number(lineNum*gridInEachLine) || Number(elementID)+1 === gridData.length){
                 lineArray.push(
                     <Grid stackable container columns={ gridInEachLine } key={`ProductGrids-${new Date()}-${lineNum}`}>
                         { gridArray }
@@ -48,7 +82,16 @@ class ProductGrids extends Component {
         }
         return (
             <div>
-            { lineArray }
+              <div>
+                { lineArray }
+              </div>
+              <div className="pagination">
+                <Pagination
+                  activePage={activePage}
+                  totalPages={totalPages}
+                  onPageChange={this.handlePaginationChange}
+                />
+              </div>
             </div>
         );
     }
