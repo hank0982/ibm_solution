@@ -65,7 +65,7 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    const initCarData = JSON.parse(JSON.stringify(require('./carData')));
+    const initCarData = JSON.parse(JSON.stringify(require('../carData')));
     this.setState({
       carData: initCarData,
     });
