@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 class FooterUI extends Component {  
   render() {
     return (
-        <div className="ui inverted vertical footer segment">
+        <div className="ui inverted vertical footer segment" style={{marginTop:'20px'}}>
         <div className="ui center aligned container">
           <div className="ui stackable inverted divided grid">
             <div className="three wide column">

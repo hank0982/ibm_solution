@@ -9,10 +9,11 @@ import {Header, Icon} from 'semantic-ui-react';
  */
 class HeaderUI extends Component {
   render() {
-    const { content, icon } = this.props;
+    const { content, icon , as} = this.props;
+    const text = as || 'h1'
     return (
-        <Header as = 'h2'>
-            <Icon name = { icon } />
+        <Header as = { text }>
+            {icon ? <Icon name = { icon } /> : null}
             <Header.Content>{ content }</Header.Content>
         </Header>
     );
