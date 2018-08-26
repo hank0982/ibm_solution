@@ -4,6 +4,7 @@ import { Menu, Input, Icon } from 'semantic-ui-react';
 import FooterUI from './components/FooterUI';
 import Home from './pages/Home';
 import CarIntro from './pages/CarIntro';
+import Qrcode from './pages/Qrcode'
 import './App.css';
 /**
  * @function NoMatch
@@ -70,9 +71,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={(props) => <Home {...props} searchWord={this.state.searchWord} />} />
             <Route path="/car_intro/:id" component={CarIntro} />
+            <Route path='/qrcode' component={}/>
             <Route component={NoMatch} />
           </Switch>
-
         </main>
       </Router>
       <FooterUI />
