@@ -47,13 +47,13 @@ class App extends Component {
             <Link to="/">
               <Menu.Item name="about">
               <Icon name='info circle' />
-              Feature
+              About
               </Menu.Item>
             </Link>
             <Link to="/">
-              <Menu.Item name="price">
-              <Icon name='dollar sign' />
-              Pricing
+              <Menu.Item name="profile">
+              <Icon name='users' />
+              Profile
               </Menu.Item>
             </Link>
             <Menu.Menu position='right'>

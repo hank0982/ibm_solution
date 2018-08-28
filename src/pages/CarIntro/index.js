@@ -73,6 +73,9 @@ class CarIntro extends Component {
                 <Header as='h3' icon textAlign='center'>
                   <Icon name='user' circular />
                   <Header.Content>{this.state.carData['salesPerson']}</Header.Content>
+                  {
+                    Array
+                  }
                 </Header>
                 </Segment>
               </Grid.Column>
