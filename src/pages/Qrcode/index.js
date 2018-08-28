@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { Card, Image, Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
+/**
+ * @class qrcode
+ * @extends {Component}
+ * @description the class will ask for the randomuser to produce an user and pass it 
+ * to App.js and change the state of it which is username and role.
+ */
+
 class qrcode extends Component {
     constructor(props) {
         super(props);
@@ -12,6 +19,10 @@ class qrcode extends Component {
             role: null
         }
     }
+    /**
+     * @function componentDidMount
+     * @description The following function will fetch the api and change the state
+     */
     componentDidMount() {
         fetch("https://randomuser.me/api/", { method: 'GET' })
             .then(res => res.json())
