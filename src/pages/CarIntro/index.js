@@ -25,21 +25,18 @@ class CarIntro extends Component {
     });
   }
   render() {
-<<<<<<< HEAD
     const id = this.props.match.params.id;
     const carData = this.state.allCarData[id];
-=======
     const star_list = []
       for(let i = 1; i <= 5; i ++){
         if(i <= Number(
-          this.state.carData['stars']
+          carData['stars']
         )){
           star_list.push(<Icon  color='yellow' name='star' />)
         }else{
           star_list.push(<Icon name='star outline' disabled/>)
         }
       }
->>>>>>> b43b1285f456fda1f8c6e30bc721fd14238f4c49
     return (
       <div>
         <Container className="Site-content">
@@ -57,7 +54,7 @@ class CarIntro extends Component {
                 <Segment>
                 <List size='tiny' relaxed >
                   {
-                    this.state.carData['mainTenanceRecord'].map((data)=>{
+                    carData['mainTenanceRecord'].map((data)=>{
                       return <List.Item>
                         <Label color={action_color_mapping[data.action]} size='tiny' horizontal>{data.action}</Label>
                         {data.text}
@@ -79,7 +76,7 @@ class CarIntro extends Component {
               <Grid.Column width={8}>
                 <HeaderUI content={'Introduction'} as='h2'/>
                 <Segment>
-                {this.state.carData.auth == true? 
+                {carData.auth == true? 
                 <Label as='a' color='red' ribbon>
                 <Icon name='thumbs up'/>
                   Authenticated
@@ -92,13 +89,9 @@ class CarIntro extends Component {
                 <Segment >
                 <Header as='h3' icon textAlign='center'>
                   <Icon name='user' circular />
-<<<<<<< HEAD
-                  <Header.Content>{carData['salesPerson']}</Header.Content>
-=======
                   <Header.Content>
-                    {this.state.carData['salesPerson'].name}
+                    {carData['salesPerson'].name}
                   </Header.Content>
->>>>>>> b43b1285f456fda1f8c6e30bc721fd14238f4c49
                 </Header>
                 
                 <List>
@@ -115,7 +108,7 @@ class CarIntro extends Component {
                     <Label color='green' horizontal>Address</Label> 
                     </List.Content>
                     <List.Content floated='right'>
-                    {this.state.carData['salesPerson'].address}
+                    {carData['salesPerson'].address}
                     </List.Content>
                   </List.Item>
                   <List.Item>
@@ -123,7 +116,7 @@ class CarIntro extends Component {
                   <Label color='blue' horizontal>Phone</Label>
                     </List.Content>
                     <List.Content floated='right'>
-                    {this.state.carData['salesPerson'].phone}
+                    {carData['salesPerson'].phone}
                     </List.Content>
                   </List.Item>
                 </List>

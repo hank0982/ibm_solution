@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import {List, Label} from 'semantic-ui-react'
 import './PriceComparison.css';
 /**
  * @class PriceComparison
@@ -46,20 +47,23 @@ class PriceComparison extends Component {
     }
     return (
       <div>
-      <p>cars that similar to this car... </p>
-        <ul className="displaySimilarCar" key={carShowInDiv.name}>
+      <Label as='a' color='red' ribbon>
+          You may want to see ...
+        </Label>
+        <List animated>
             {carShowInDiv.map(car => 
-              (<Link to={`/car_intro/${car.name}`} key={car.name}>
-                <div className="similarCar">
-                  <p>
-                    {car.name}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    ${car.price}
-                  </p>
-                </div>
-              </Link>))}
-        </ul>
+              (
+                <List.Item as='a'>
+                <List.Content floated='right'>
+                  <Label tag color='green' horizontal size='small'>${car.price}</Label>
+                  </List.Content>
+                  <List.Content >
+                  <Link to={`/car_intro/${car.name}`} key={car.name}>{car.name}</Link>
+                  </List.Content>
+                  
+                </List.Item>
+              ))}
+        </List>
       </div>
     );
   }

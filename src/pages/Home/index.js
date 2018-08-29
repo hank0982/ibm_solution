@@ -10,10 +10,6 @@ import { Redirect } from 'react-router-dom'
  * @return {Array} data array of car data
  * @description This will generate random car data
  */
-<<<<<<< HEAD
-=======
-
->>>>>>> b43b1285f456fda1f8c6e30bc721fd14238f4c49
 
 /**
  * @class Home
