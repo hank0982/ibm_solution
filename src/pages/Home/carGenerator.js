@@ -1,6 +1,37 @@
 var Chance = require('chance');
 const chance = new Chance();
 
+const mainTenanceRecord = (dataNum) =>{
+  const vin = chance.cf()
+  const carParts = ['Air Bag', 'Air Cleaner','Stabilizer Bar','Steering Column','Piston','Cylinder Head','Valve']
+  const actions = ['Fix', 'Change']
+  let records = []
+  records.push({
+    text: 'Car vin is ' + vin,
+    action: 'Info'
+  })
+  for(let i = 1; i < dataNum; i++){
+    const dice = chance.integer({min: 0, max: 10})
+    if(dice != 0){
+      const action = actions[chance.integer({min:0, max:1})]
+      records.push(
+        {
+          text: `${action} ${carParts[chance.integer({min:0, max:6})]}`,
+          action: action
+        }
+      )
+    }else{
+      records.push(
+          {
+            text: 'Transfer to ' + chance.name(),
+            action: 'Transfer'
+          }
+        )
+      }
+    }
+    return records
+} 
+
 const carDataGenerator = (dataNum) => {
   const data = {};
   const carBrand = ['Lexus', 'BMW', 'Jaguar', 'Jeep', 'Chevrolet', 'Mitsubishi', 'Mini', 'Land Rover', 'Tesla', 'Saab', 'Lamborghini']
@@ -18,7 +49,13 @@ const carDataGenerator = (dataNum) => {
       header: randomCarName,
       metaData: chance.date({string: true}),
       description: chance.sentence({ words: 3 }),
-      salesPerson: chance.first() + chance.last(),
+      stars: chance.integer({max: 5, min: 0}),
+      salesPerson: {
+        name: `${chance.first()} ${chance.last()}`,
+        address: `${chance.address()}`,
+        phone: `${chance.phone()}`
+      },
+      mainTenanceRecord: mainTenanceRecord(chance.integer({min:1, max:10}))
     }
   }
   return data;
