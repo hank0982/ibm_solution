@@ -45,7 +45,7 @@ const carDataGenerator = (dataNum) => {
       price,
       className: randomClass,
       auth: Math.floor(Math.random() * 10) < 3 ? true : false,
-      imagePath: "https://loremflickr.com/320/240/car,lexus,BMW,Jeep/all?random="+i,
+      imagePath: "https://loremflickr.com/320/240/car,lexus,BMW,Jeep/all?lock="+i,
       header: randomCarName,
       metaData: chance.date({string: true}),
       description: chance.sentence({ words: 3 }),
