@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Card, Image, Button, Icon } from 'semantic-ui-react';
+import { Card, Image, Button, Icon, Container, Grid} from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import HeaderUI from '../../components/HeaderUI';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 
 /**
  * @class qrcode
@@ -10,6 +13,9 @@ import { Link } from 'react-router-dom';
  */
 
 class qrcode extends Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
     constructor(props) {
         super(props);
         this.state = {
@@ -18,6 +24,7 @@ class qrcode extends Component {
             error: null,
             role: null
         }
+        this.cookies = this.props.cookies;
     }
     /**
      * @function componentDidMount
@@ -43,13 +50,21 @@ class qrcode extends Component {
                         })
                     }
                     let username = this.state.user.results[0].name.first + ' ' + this.state.user.results[0].name.last;
-                    this.props.getUser(username,this.state.role);
+                    let role = this.state.role;
+                    let pic_url = this.state.user.results[0].picture.large
+                    this.props.getUser(username,role, pic_url);
+                    this.cookies.set('userData', {
+                        username,
+                        role,
+                        pic_url
+                    })
                 },
                 (error) => {
                     this.setState({
                         error: true,
                         isLoaded: true
                     });
+                    
                 }
             )
     }
@@ -61,28 +76,34 @@ class qrcode extends Component {
             return <h1>User Fetch Error</h1>
         }
         else if (isLoaded === false) {
-            return <h1>Loading...</h1>
+            return <HeaderUI content="Loading...."/>
         }
         else {
             return (
-                <Link to='/'>
-                    <Card>
-                        <Image src={user.results[0].picture.large} />
-                        <Card.Content>
-                            <Card.Header>{user.results[0].name.first + ' ' + user.results[0].name.last}</Card.Header>
-                            <Card.Meta>{role}</Card.Meta>
-                        </Card.Content>
-                        <Button animated>
-                            <Button.Content visible>Next</Button.Content>
-                            <Button.Content hidden>
-                                <Icon name='arrow right' />
-                            </Button.Content>
-                        </Button>
-                    </Card>
-                </Link>
+                <Container textAlign='center' fluid>
+                <HeaderUI content="Random User"/>
+                <Grid centered columns={2}>
+                    <Link to='/'>
+                        <Card>
+                            <Image src={user.results[0].picture.large} size='large'/>
+                            <Card.Content>
+                                <Card.Header>{user.results[0].name.first + ' ' + user.results[0].name.last}</Card.Header>
+                                <Card.Meta>{role}</Card.Meta>
+                            </Card.Content>
+                            <Button animated>
+                                <Button.Content visible>Next</Button.Content>
+                                <Button.Content hidden>
+                                    <Icon name='arrow right' />
+                                </Button.Content>
+                            </Button>
+                        </Card>
+                    </Link>
+                </Grid>
+                </Container>
+                    
             );
         }
     }
 }
 
-export default qrcode;
+export default withCookies(qrcode);

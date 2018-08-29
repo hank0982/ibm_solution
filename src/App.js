@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { Switch, Link, withRouter, BrowserRouter as Router, Route } from "react-router-dom";
+import { Redirect, Switch, Link, withRouter, BrowserRouter as Router, Route } from "react-router-dom";
 import { Menu, Input, Icon } from 'semantic-ui-react';
 import FooterUI from './components/FooterUI';
 import Home from './pages/Home';
 import CarIntro from './pages/CarIntro';
 import Qrcode from './pages/Qrcode'
+import Profile from './pages/Profile'
+import About from './pages/About'
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
+
 import './App.css';
 /**
  * @function NoMatch
@@ -23,6 +28,9 @@ const NoMatch = ({ location }) => (
  * @description Main react frontend class
  */
 class App extends Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -31,69 +39,89 @@ class App extends Component {
       role: null
     }
     this.getUser = this.getUser.bind(this);
+    this.cookies = this.props.cookies;
   }
-
+  componentWillMount(){
+    const userData = this.cookies.get('userData');
+    if(!userData){
+      this.setState({
+        no_auth: true
+      })
+    }else{
+      this.setState({
+        username: userData.username,
+        role: userData.role,
+        image_src: userData.pic_src
+      })
+    }
+  }
   /* 
   * This function allows App to get username from qrcode page
   * which will thereby pass to qrcode page to get those params.
   */
-  getUser(username_g, role_g){
+  getUser(username, role, image_src){
     this.setState({
-      username : username_g,
-      role : role_g
+      username,
+      role,
+      image_src
     })
   }
   /**
    * TODO: Extract the Menu from this component
    */
   render() {
-   
-    return (
-      <div className="Site">
-        <Router >
-          <main className="Site-content">
-            <Menu>
-              <Link to="/">
+    const { username } = this.state;
+      return (
+        <div className="Site">
+          <Router >
+            <main className="Site-content">
+              <Menu>
                 <Menu.Item name="home">
-                  <Icon name='home' />
-                  Home
-              </Menu.Item>
-            </Link>
-            <Link to="/">
-              <Menu.Item name="about">
-              <Icon name='info circle' />
-              About
-              </Menu.Item>
-            </Link>
-            <Link to="/">
-              <Menu.Item name="profile">
-              <Icon name='users' />
-              Profile
-              </Menu.Item>
+                    Hello {username}
+                  </Menu.Item>
+                <Link to="/">
+                  <Menu.Item name="home">
+                    <Icon name='home' />
+                    Home
+                  </Menu.Item>
               </Link>
-              <Menu.Menu position='right'>
-                <Menu.Item>
-                  <Input
-                    onChange={(e) => this.setState({ searchWord: e.target.value })}
-                    transparent
-                    icon={{ name: 'search', link: true }}
-                    placeholder='Search cars...'
-                  />
+              <Link to="/about">
+                <Menu.Item name="about">
+                <Icon name='info circle' />
+                About
                 </Menu.Item>
-              </Menu.Menu>
-            </Menu>
-            <Switch>
-              <Route exact path="/" render={(props) => <Home {...props} searchWord={this.state.searchWord} />} />
-              <Route path="/car_intro/:id" component={CarIntro} />
-              <Route path='/qrcode' render={(props) => <Qrcode {...props}  getUser={this.getUser}/>}/>
-              <Route component={NoMatch} />
-            </Switch>
-          </main>
-        </Router>
-        <FooterUI />
-      </div>
-    );
-  }
+              </Link>
+              <Link to="/profile">
+                <Menu.Item name="profile">
+                <Icon name='users' />
+                Profile
+                </Menu.Item>
+                </Link>
+                <Menu.Menu position='right'>
+                  <Menu.Item>
+                    <Input
+                      onChange={(e) => this.setState({ searchWord: e.target.value })}
+                      transparent
+                      icon={{ name: 'search', link: true }}
+                      placeholder='Search cars...'
+                    />
+                  </Menu.Item>
+                </Menu.Menu>
+              </Menu>
+              <Switch>
+                <Route exact path="/" render={(props) => <Home {...props} searchWord={this.state.searchWord} />} />
+                <Route path="/car_intro/:id" component={CarIntro} />
+                <Route path="/about" component={About}/>
+                <Route path="/profile" component={Profile}/>
+                <Route path='/qrcode' render={(props) => <Qrcode {...props}  getUser={this.getUser}/>}/>)
+                <Route component={NoMatch} />
+              </Switch>
+            </main>
+          </Router>
+          <FooterUI />
+        </div>
+      );
+    }
 }
 
-export default withRouter(App);
+export default withCookies(App);
