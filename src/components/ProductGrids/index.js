@@ -82,16 +82,16 @@ class ProductGrids extends Component {
         }
         return (
             <div>
-              <div>
+                <div>
                 { lineArray }
-              </div>
-              <div className="pagination">
+                </div>
+                <div className="pagination">
                 <Pagination
-                  activePage={activePage}
-                  totalPages={totalPages}
-                  onPageChange={this.handlePaginationChange}
+                    activePage={activePage}
+                    totalPages={totalPages}
+                    onPageChange={this.handlePaginationChange}
                 />
-              </div>
+                </div>
             </div>
         );
     }
