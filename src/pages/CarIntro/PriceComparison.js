@@ -60,7 +60,6 @@ class PriceComparison extends Component {
                   <List.Content >
                   <Link to={`/car_intro/${car.name}`} key={car.name}>{car.name}</Link>
                   </List.Content>
-                  
                 </List.Item>
               ))}
         </List>
