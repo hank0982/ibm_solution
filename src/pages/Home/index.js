@@ -10,24 +10,6 @@ import { Container } from 'semantic-ui-react';
  * @return {Array} data array of car data
  * @description This will generate random car data
  */
-/*
-const carDataGenerator = (dataNum) => {
-  const data = [];
-  const carBrand = ['Lexus', 'BMW', 'Jaguar', 'Jeep', 'Chevrolet', 'Mitsubishi', 'Mini', 'Land Rover', 'Tesla', 'Saab', 'Lamborghini']
-  for(let i = 1; i < dataNum; i++){
-    const randomCarName = carBrand[Math.floor(Math.random() * carBrand.length)];
-    data.push({
-      auth: Math.floor(Math.random() * 10) < 3 ? true : false,
-      imagePath: "https://picsum.photos/300/200/?random="+i,
-      header: `${randomCarName}-${chance.character({ alpha: true, casing: 'upper' })}${Math.floor(Math.random() * 1000)}`,
-      metaData: chance.date({string: true}),
-      description: chance.sentence({ words: 3 }),
-      salesPerson: chance.first() + chance.last(),
-    })
-  }
-  return data;
-}
-*/
 
 /**
  * @class Home
@@ -53,10 +35,12 @@ class Home extends Component {
     if (searchWord === undefined || searchWord === ' ') {
       newCarFilter = carData;
     }
+
     else{
-      for ( let i = 0; i < carData.length; i += 1) {
-        if (carData[i].header.toLowerCase().indexOf(searchWord.toLowerCase())>-1) {
-          newCarFilter.push(carData[i]);
+      const carHeader = Object.keys(carData);
+      for ( let i = 0; i < carHeader.length; i += 1) {
+        if (carHeader[i].toLowerCase().indexOf(searchWord.toLowerCase())>-1) {
+          newCarFilter.push(carData[carHeader[i]]);
         }
       }
     }

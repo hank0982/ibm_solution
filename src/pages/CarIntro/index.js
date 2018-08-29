@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Image, Grid, Segment, List, Statistic, Header, Icon} from 'semantic-ui-react';
 import HeaderUI from '../../components/HeaderUI'; 
+import PriceComparison from './PriceComparison'; 
 /**
  * @class CarIntro
  * @extends {Component}
@@ -9,24 +10,26 @@ import HeaderUI from '../../components/HeaderUI';
 class CarIntro extends Component {
   constructor(props){
     super(props);
-    this.id = this.props.match.params.id;
+    //this.id = this.props.match.params.id;
   }
   componentWillMount() {
-    const initCarData = JSON.parse(JSON.stringify(require('../carData')))[this.id];
+    const initCarData = JSON.parse(JSON.stringify(require('../carData')));
     this.setState({
-      carData: initCarData,
+      allCarData: initCarData,
     });
   }
   render() {
+    const id = this.props.match.params.id;
+    const carData = this.state.allCarData[id];
     return (
       <div>
         <Container className="Site-content">
-          <HeaderUI icon="car" content={this.id}/>
+          <HeaderUI icon="car" content={id}/>
           <Grid stackable>
             <Grid.Row columns={'equal'}>
               <Grid.Column width={8}>
                 <Segment>
-                  <Image src={this.state.carData['imagePath']} fluid rounded/>
+                  <Image src={carData['imagePath']} fluid rounded/>
                 </Segment>
               </Grid.Column>
               <Grid.Column width={4}>
@@ -55,7 +58,7 @@ class CarIntro extends Component {
               <Grid.Column width={4}>
                 <HeaderUI content='Price' as='h2'/>
                 <Statistic>
-                  <Statistic.Value>${this.state.carData['price'].toLocaleString()}</Statistic.Value>
+                  <Statistic.Value>${carData['price'].toLocaleString()}</Statistic.Value>
                   <Statistic.Label>TWD</Statistic.Label>
                 </Statistic>
               </Grid.Column>
@@ -72,13 +75,15 @@ class CarIntro extends Component {
                 <Segment>
                 <Header as='h3' icon textAlign='center'>
                   <Icon name='user' circular />
-                  <Header.Content>{this.state.carData['salesPerson']}</Header.Content>
+                  <Header.Content>{carData['salesPerson']}</Header.Content>
                 </Header>
                 </Segment>
               </Grid.Column>
               <Grid.Column width={4}>
                 <HeaderUI content='Price Comparison' as='h2'/>
-                
+                <Segment>
+                  <PriceComparison id={id}/>
+                </Segment>
               </Grid.Column>
             </Grid.Row>
           </Grid>
