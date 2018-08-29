@@ -2,32 +2,15 @@ import React, { Component } from 'react';
 import HeaderUI from '../../components/HeaderUI';
 import ProductGrids from '../../components/ProductGrids'
 import { Container } from 'semantic-ui-react';
-//import Chance from 'chance';
-//const chance = new Chance();
+import { Redirect } from 'react-router-dom'
+
 /**
  * @function carDataGenerator
  * @param {Number} dataNum
  * @return {Array} data array of car data
  * @description This will generate random car data
  */
-/*
-const carDataGenerator = (dataNum) => {
-  const data = [];
-  const carBrand = ['Lexus', 'BMW', 'Jaguar', 'Jeep', 'Chevrolet', 'Mitsubishi', 'Mini', 'Land Rover', 'Tesla', 'Saab', 'Lamborghini']
-  for(let i = 1; i < dataNum; i++){
-    const randomCarName = carBrand[Math.floor(Math.random() * carBrand.length)];
-    data.push({
-      auth: Math.floor(Math.random() * 10) < 3 ? true : false,
-      imagePath: "https://picsum.photos/300/200/?random="+i,
-      header: `${randomCarName}-${chance.character({ alpha: true, casing: 'upper' })}${Math.floor(Math.random() * 1000)}`,
-      metaData: chance.date({string: true}),
-      description: chance.sentence({ words: 3 }),
-      salesPerson: chance.first() + chance.last(),
-    })
-  }
-  return data;
-}
-*/
+
 
 /**
  * @class Home
@@ -36,12 +19,13 @@ const carDataGenerator = (dataNum) => {
  * @description This class is responsible for main page
  */
 class Home extends Component {
-  constructor(){
-    super();
+  
+  constructor(props){
+    super(props);
     this.state = {
       carData: [],
-      //carShow: [],
       page: 1,
+      no_auth: false
     };
     this.handleCarShowChange = this.handleCarShowChange.bind(this);
   }
@@ -74,6 +58,9 @@ class Home extends Component {
   render() {
     const { searchWord } = this.props;
     const carShow = this.handleCarShowChange(searchWord);
+    if(this.state.no_auth){
+      return <Redirect to="/qrcode"/>
+    }
     return (
       <div>
       <Container className="Site-content">
