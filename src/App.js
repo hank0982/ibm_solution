@@ -76,22 +76,24 @@ class App extends Component {
           <Router >
             <main className="Site-content">
               <Menu stackable>
-                <Menu.Item name="home">
-                    Hello {username}
-                  </Menu.Item>
-                <Link to="/">
-                  <Menu.Item name="home">
-                    <Icon name='home' />
-                    Home
-                  </Menu.Item>
+              <Link to="/">
+              <Menu.Item color='blue' name="home" link active>
+                  AutoChain 
+              </Menu.Item>
+              </Link>
+              <Link to="/">
+                <Menu.Item name="home" link>
+                  <Icon name='home' />
+                  Home
+                </Menu.Item>
               </Link>
               <Link to="/about">
-                <Menu.Item name="about">
+                <Menu.Item name="about" link>
                 <Icon name='info circle' />
                 About
                 </Menu.Item>
               </Link>
-              <Menu.Item name="about">
+              <Menu.Item name="intro">
                 We solve the information asymmetry for you
 
                 </Menu.Item>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HeaderUI from '../../components/HeaderUI';
-import { Container ,Segment, Table, Grid, List} from 'semantic-ui-react';
+import { Container ,Segment, Table, Grid, List, Header, Icon} from 'semantic-ui-react';
+const square = { width: '100%', height: '100%' }
 
 
 /**
@@ -81,43 +82,59 @@ class About extends Component {
             </Segment>
             <HeaderUI content="Why Blockchain?" as="h3"/>
             <Segment color='green'>
-            <List divided verticalAlign='middle'>
-                <List.Item>
-                <List.Content>
-                    Immutable
-                </List.Content>
-                </List.Item>
-                <List.Item>
-                <List.Content>
-                    Smart Contract / Chaincode
-                </List.Content>
-                </List.Item>
-                <List.Item>
-                <List.Content>
-                    Consensus
-                </List.Content>
-                </List.Item>
-            </List>
+                <Grid columns={3}>
+                    <Grid.Column>
+                        <Header as='h2' icon textAlign='center'>
+                        <Icon name='balance scale' circular/>
+                        <Header.Content>Immutable</Header.Content>
+                        </Header>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Header as='h2' icon textAlign='center'>
+                        <Icon name='settings' circular/>
+                        <Header.Content>Smart Contract</Header.Content> 
+                        </Header>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Header as='h2' icon textAlign='center'>
+                        <Icon name='book' circular/>
+                            Consensus
+                        </Header>
+                    </Grid.Column>
+                </Grid>
+        
             </Segment>
             <HeaderUI content="Why Hyperledger?" as="h3"/>
             <Segment color='brown'>
-            <List divided verticalAlign='middle'>
-                <List.Item>
-                <List.Content>
-                    Private and Permissioned
-                </List.Content>
-                </List.Item>
-                <List.Item>
-                <List.Content>
-                    Channel - some participants might be competitors and not want every transaction they make
-                </List.Content>
-                </List.Item>
-                <List.Item>
-                <List.Content>
-                    18 premier members and various general members and acadamia to support the development of Hyperledger
-                </List.Content>
-                </List.Item>
-            </List>
+            <Grid columns={3}>
+                    <Grid.Column>
+                    <Header as='h2' icon textAlign='center'>
+                    <Icon name='pencil alternate' circular/>
+                    <Header.Content>Auditability</Header.Content>
+                    <Header.Subheader>
+                    </Header.Subheader>
+                    </Header>
+                    </Grid.Column>
+                    <Grid.Column>
+                    <Header as='h2' icon textAlign='center'>
+                    <Icon name='chain' circular/>
+                        Channel
+                    <Header.Subheader>
+                    </Header.Subheader>
+                    </Header>
+                    </Grid.Column>
+                    <Grid.Column>
+                    <Header as='h2' icon textAlign='center'>
+                    <Icon name='users' circular/>
+                        18 premier members
+                    <Header.Subheader>
+                        
+                    </Header.Subheader>
+                    </Header>
+                    </Grid.Column>
+
+                </Grid>
+            
             </Segment>
         </Container>)
         
