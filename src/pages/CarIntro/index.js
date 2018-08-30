@@ -53,6 +53,14 @@ class CarIntro extends Component {
                 <HeaderUI content={'Maintenance Record'} as='h2'/>
                 <Segment>
                 <List size='tiny' relaxed >
+                <List.Item>
+                    <List.Content floated='left'>
+                      <Label color='yellow' horizontal>Stars</Label>
+                    </List.Content>
+                    <List.Content floated='right'>
+                      {star_list}
+                    </List.Content>
+                  </List.Item>
                   {
                     carData['mainTenanceRecord'].map((data)=>{
                       return <List.Item>
@@ -95,14 +103,7 @@ class CarIntro extends Component {
                 </Header>
                 
                 <List>
-                  <List.Item>
-                    <List.Content floated='left'>
-                      <Label color='yellow' horizontal>Stars</Label>
-                    </List.Content>
-                    <List.Content floated='right'>
-                      {star_list}
-                    </List.Content>
-                  </List.Item>
+                  
                   <List.Item>
                     <List.Content floated='left'>
                     <Label color='green' horizontal>Address</Label> 

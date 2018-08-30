@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 /**
  * @class FooterUI
  * @extends {Component}
@@ -13,35 +14,32 @@ class FooterUI extends Component {
         <div className="ui center aligned container">
           <div className="ui stackable inverted divided grid">
             <div className="three wide column">
-              <h4 className="ui inverted header">Group 1</h4>
+              <h4 className="ui inverted header">Pages</h4>
               <div className="ui inverted link list">
-                <a href="#" className="item">Link One</a>
-                <a href="#" className="item">Link Two</a>
-                <a href="#" className="item">Link Three</a>
-                <a href="#" className="item">Link Four</a>
+                <a href='#' className='item'>Home</a>
+                <a href='#' className='item'>About</a>
               </div>
             </div>
             <div className="three wide column">
-              <h4 className="ui inverted header">Group 2</h4>
+              <h4 className="ui inverted header">Blockchain</h4>
               <div className="ui inverted link list">
-                <a href="#" className="item">Link One</a>
-                <a href="#" className="item">Link Two</a>
-                <a href="#" className="item">Link Three</a>
-                <a href="#" className="item">Link Four</a>
+                <a href="#" className="item">Immutable</a>
+                <a href="#" className="item">Chaincode</a>
+                <a href="#" className="item">Consensus</a>
               </div>
             </div>
             <div className="three wide column">
-              <h4 className="ui inverted header">Group 3</h4>
+              <h4 className="ui inverted header">Hyperledger</h4>
               <div className="ui inverted link list">
-                <a href="#" className="item">Link One</a>
-                <a href="#" className="item">Link Two</a>
-                <a href="#" className="item">Link Three</a>
-                <a href="#" className="item">Link Four</a>
+                <a href="#" className="item">Private and Permissioned</a>
+                <a href="#" className="item">Channel </a>
+                <a href="#" className="item">18 premier members</a>
               </div>
             </div>
             <div className="seven wide column">
-              <h4 className="ui inverted header">LibrosTrading</h4>
-              <p>Exchange book you have for book you want.</p>
+              <h4 className="ui inverted header">AutoChain</h4>
+              <p>By leveraging the power of Hyperledger, AutoChain aims to solve the information asymmetry in current second-handed car market.
+</p>
             </div>
           </div>
           <div className="ui inverted section divider"></div>

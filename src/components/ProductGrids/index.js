@@ -20,9 +20,9 @@ class ProductGrids extends Component {
     generateColumn = (cardData, key) => {
         const {imagePath, header, metaData, description, auth} = cardData;
         return (
-            <Grid.Column key={`$ProductGrids-${new Date()}-${key}`}>
-                <Card>
-                    <Link to={`/car_intro/${header}`}><Image src={imagePath}/></Link>
+            <Grid.Column  key={`$ProductGrids-${new Date()}-${key}`}>
+                <Card fluid>
+                    <Link to={`/car_intro/${header}`}><Image fluid src={imagePath}/></Link>
                     <Card.Content>
                         <Card.Header>
                             {auth ? <div className="header">{header} <Icon name='thumbs up outline'/></div> : header}
@@ -72,7 +72,7 @@ class ProductGrids extends Component {
             gridArray.push(this.generateColumn(gridData[elementID], `line-${lineNum}-element-${elementID}`));
             if(Number(elementID)+1 === Number(lineNum*gridInEachLine) || Number(elementID)+1 === gridData.length){
                 lineArray.push(
-                    <Grid stackable container columns={ gridInEachLine } key={`ProductGrids-${new Date()}-${lineNum}`}>
+                    <Grid doubling centered stackable container columns={ gridInEachLine } key={`ProductGrids-${new Date()}-${lineNum}`}>
                         { gridArray }
                     </Grid>
                 )

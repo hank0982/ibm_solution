@@ -15,10 +15,10 @@ class About extends Component {
     }
     render() {
         return (<Container>
-            <HeaderUI icon='settings' content="About Auto Chain"/>
+            <HeaderUI icon='settings' content="About AutoChain"/>
             <HeaderUI content="Mission Statement" as="h3"/>
             <Segment color='red'>
-                By leveraging the power of Hyperledger, Auto Chain aims to solve the information asymmetry in current second-handed car market.
+                By leveraging the power of Hyperledger, AutoChain aims to solve the information asymmetry in current second-handed car market.
             </Segment>
             <HeaderUI content="Current Market" as="h3"/>
 
@@ -84,7 +84,7 @@ class About extends Component {
             <List divided verticalAlign='middle'>
                 <List.Item>
                 <List.Content>
-                    Unchangable
+                    Immutable
                 </List.Content>
                 </List.Item>
                 <List.Item>
@@ -100,7 +100,7 @@ class About extends Component {
             </List>
             </Segment>
             <HeaderUI content="Why Hyperledger?" as="h3"/>
-            <Segment color='green'>
+            <Segment color='brown'>
             <List divided verticalAlign='middle'>
                 <List.Item>
                 <List.Content>

@@ -75,7 +75,7 @@ class App extends Component {
         <div className="Site">
           <Router >
             <main className="Site-content">
-              <Menu>
+              <Menu stackable>
                 <Menu.Item name="home">
                     Hello {username}
                   </Menu.Item>
@@ -91,12 +91,10 @@ class App extends Component {
                 About
                 </Menu.Item>
               </Link>
-              <Link to="/profile">
-                <Menu.Item name="profile">
-                <Icon name='users' />
-                Profile
+              <Menu.Item name="about">
+                We solve the information asymmetry for you
+
                 </Menu.Item>
-                </Link>
                 <Menu.Menu position='right'>
                   <Menu.Item>
                     <Input
